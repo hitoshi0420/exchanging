@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>本地文档格式转换工具</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="hero-panel">
+      <div class="brand-badge">LOCAL CONVERTER</div>
+      <h1>文档格式互转工具</h1>
+      <p class="hero-text">
+        在本地电脑上完成 PDF、Word、PPT、Markdown、HTML、TXT 等格式转换。
+        文件不会上传到外部服务器，核心转换依赖你本机安装的 LibreOffice 与 Pandoc。
+      </p>
+
+      <div class="capability-card">
+        <h2>支持说明</h2>
+        <ul>
+          <li>Word / ODT / RTF / TXT / HTML 之间互转</li>
+          <li>PPT / PPTX / ODP 互转及导出 PDF</li>
+          <li>Markdown 转 HTML / DOCX / PDF / TXT</li>
+          <li>PDF 当前支持提取文本到 TXT / HTML / DOCX</li>
+        </ul>
+      </div>
+
+      <div class="status-card">
+        <div class="status-head">
+          <h2>环境检测</h2>
+          <button id="refreshCapabilities" class="ghost-button">刷新</button>
+        </div>
+        <div id="capabilities" class="capabilities"></div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <section class="converter-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FORMAT SWITCH</p>
+            <h2>上传并转换</h2>
+          </div>
+        </div>
+
+        <form id="convertForm" class="convert-form">
+          <label class="field-group file-drop" for="fileInput">
+            <span class="field-label">逐个添加源文件</span>
+            <input id="fileInput" name="files" type="file" />
+            <span id="fileHint" class="file-hint">每次选择后会自动加入列表，支持为每个文件单独设置目标格式</span>
+          </label>
+
+          <div class="field-group">
+            <span class="field-label">已选文件（可单独设置目标格式）</span>
+            <div id="selectedFiles" class="selected-files empty">还没有添加文件。</div>
+          </div>
+
+          <button id="submitButton" type="submit" class="primary-button">开始转换</button>
+        </form>
+      </section>
+
+      <section class="result-card">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">RESULT</p>
+            <h2>转换结果</h2>
+          </div>
+        </div>
+        <div id="result" class="result empty">还没有开始转换。</div>
+      </section>
+
+      <section class="result-card">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">HISTORY</p>
+            <h2>历史转换文件</h2>
+          </div>
+          <div class="action-row">
+            <button id="refreshHistory" class="ghost-button" type="button">刷新</button>
+            <button id="clearHistory" class="ghost-button danger" type="button">全部删除</button>
+          </div>
+        </div>
+        <div id="history" class="history-list empty">暂无历史文件。</div>
+      </section>
+
+      <section class="result-card">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">PREVIEW</p>
+            <h2>转换结果预览</h2>
+          </div>
+        </div>
+        <div id="previewBox" class="preview-box empty">请选择一个可预览的转换结果。</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+target/
+*.jar
+.idea/
+*.iml
+.DS_Store
+storage/outputs/
+storage/uploads/
+
+jdk/
+installer/*.exe
+storage/
